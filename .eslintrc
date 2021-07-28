@@ -1,3 +1,18 @@
 {
-  "extends": ["next", "next/core-web-vitals"]
+  "extends": ["airbnb-typescript", "next", "next/core-web-vitals"],
+  "parserOptions": {
+    "project": ["./tsconfig.json"]
+  },
+  "parser": "@typescript-eslint/parser",
+  "rules": {
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
+    "react/jsx-props-no-spreading": 0,
+    "max-len": [2, 120, 2, {
+      "ignoreUrls": true,
+      "ignoreStrings": true
+      }
+    ],
+    "no-case-declarations": 0
+    
+  }
 }
