@@ -5,10 +5,10 @@ import { prisma } from '../../../prisma/db';
 
 export default NextAuth({
   providers: [
-    Providers.Instagram({
-      clientId: process.env.INSTAGRAM_CLIENT_ID,
-      clientSecret: process.env.INSTAGRAM_CLIENT_SECRET,
-    }),
+    // Providers.Instagram({
+    //   clientId: process.env.INSTAGRAM_CLIENT_ID,
+    //   clientSecret: process.env.INSTAGRAM_CLIENT_SECRET,
+    // }),
     Providers.GitHub({
       clientId: process.env.GITHUB_CLIENT_ID,
       clientSecret: process.env.GITHUB_CLIENT_SECRET,
