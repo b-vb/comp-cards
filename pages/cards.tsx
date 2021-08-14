@@ -7,6 +7,7 @@ import Head from 'next/head';
 import React from 'react';
 import CardsList from '../components/DoubleMini/CardsList';
 import Navigation from '../components/Navigation';
+import useProtectedRoute from '../hooks/useProtectedRoute';
 import { prisma } from '../prisma/db';
 import DoubleMiniCardWithRoutinesAndElements from '../types/doubleMiniCard';
 
@@ -48,20 +49,24 @@ export async function getServerSideProps({ req }: GetServerSidePropsContext) {
   };
 }
 
-const Cards = ({ cards, session }: CardProps) => (
-  <div className="max-w-7xl mx-auto">
-    <Head>
-      <title>Cards</title>
-      <link rel="icon" href="/favicon.ico" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    </Head>
+const Cards = ({ cards, session }: CardProps) => {
+  useProtectedRoute(session);
 
-    <Navigation session={session} />
+  return (
+    <div className="max-w-7xl mx-auto">
+      <Head>
+        <title>Cards</title>
+        <link rel="icon" href="/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      </Head>
 
-    <div className="container py-8">
-      <CardsList cards={cards} />
+      <Navigation session={session} />
+
+      <div className="container py-8">
+        <CardsList cards={cards} />
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default Cards;

@@ -11,6 +11,7 @@ import { getSession } from 'next-auth/client';
 import { Session } from 'next-auth';
 import Navigation from '../../components/Navigation';
 import DoubleMiniCardWithRoutinesAndElements from '../../types/doubleMiniCard';
+import useProtectedRoute from '../../hooks/useProtectedRoute';
 
 const prisma = new PrismaClient();
 
@@ -65,6 +66,7 @@ const saveCard = async (card: Inputs) => {
 };
 
 const NewCard = ({ elements, session }: Props) => {
+  useProtectedRoute(session);
   const { register, handleSubmit } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const savedCard = await saveCard(data);
